@@ -1,0 +1,45 @@
+
+.CountryTab{
+    width: 100%;
+    margin-top: 3rem;
+}
+
+.CountryTab_box{
+    background-color: white;
+    height: 18rem;
+    width: 15rem;
+    border-radius: .5rem;
+    margin: auto;
+}
+
+.CountryTab_box:hover{
+    cursor: pointer;
+    border: solid 2px white;
+}
+
+
+.CountryTab_box_img{
+    width: 100%;
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem; 
+}
+
+.CountryTab_box_details{
+    padding: 1rem;
+}
+
+.CountryTab_box_details h4{
+    line-height: 2;
+}
+
+.CountryTab_box_details p{
+    padding-bottom: .3rem;
+}
+
+.CountryTab_box_details span{
+    color: rgb(134, 131, 131);
+}
+
+@media screen and (max-width:) {
+    
+}

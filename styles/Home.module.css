@@ -1,0 +1,150 @@
+
+.Home{
+  width: 100%;
+}
+
+.Home_box{
+  width: 90%;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+.Home_box_top{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.Home_box_top_search{
+  width: 40%;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: .4rem;
+  gap: 1rem;
+  padding: .5rem 1rem;
+}
+
+.Home_box_top input{
+  width: 90%;
+  border: none;
+  padding: .5rem;
+}
+
+.Home_box_top_search_icon{
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.Home_box_top_filter{
+  background-color: white;
+  padding: .5rem;
+  border-radius: .5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+}
+
+.Home_box_top_filter p{
+  font-weight: 500;
+}
+
+.Home_box_top_filter_icon{
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.Home_box_top_filter_options{
+  width: 22%;
+  border-radius: .4rem;
+  padding: 1rem 1rem;
+  background-color: white;
+  position: absolute;
+  top: 24%;
+  right: 6.4%;
+}
+
+.Home_box_top_filter_options p{
+  line-height: 1.4;
+}
+
+.Home_box_top_filter_options p:hover{
+  background-color: rgb(235, 235, 248);
+  padding: .6rem .3rem;
+  border-radius: .3rem;
+  cursor: pointer;
+  
+}
+
+.Home_box_countries{
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.Home_box_country{
+  width: 100%;
+  margin: auto;
+}
+
+@media screen and (max-width: 35em) {
+  .Home_box_top{
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .Home_box_top_search{
+    width: 100%;
+  }
+
+  .Home_box_top_filter{
+    width: 60%;
+  }
+
+  .Home_box_top_filter_options{
+   top: 29%;
+   right: 40%;
+   width: 55%;
+  }
+
+  .Home_box_countries{
+    grid-template-columns: 1fr;
+  }
+
+  .Home_box_country{
+    width: 70%;
+    margin: auto;
+    padding: 0 2rem;
+  }
+}
+@media screen and (min-width: 450px) and (max-width: 768px) {
+  .Home_box_top{
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .Home_box_top_search{
+    width: 100%;
+  }
+
+  .Home_box_top_filter{
+    width: 60%;
+  }
+
+    .Home_box_top_filter_options{
+   top: 29%;
+   right: 40%;
+   width: 55%;
+  }
+
+   .Home_box_countries{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 770px) and (max-width: 1024px) {
+  .Home_box_countries{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

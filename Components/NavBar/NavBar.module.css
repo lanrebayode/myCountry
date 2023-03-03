@@ -1,0 +1,29 @@
+
+
+.NavBar{
+    width: 100%;
+    background-color: white;
+}
+
+.NavBar_box{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    align-items: center;
+    border-bottom: 5px solid rgb(215, 215, 231);
+    border-top: 5px solid rgb(215, 215, 231);
+}
+
+.NavBar_box_dark{
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+.NavBar_box h4{
+    font-size: 1.5rem;
+}
+
+.NavBar_box p{
+    font-size: 1.1rem;
+}
