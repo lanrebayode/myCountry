@@ -51,6 +51,12 @@ export default function Home({}) {
     console.log(data);
   };
 
+  const filteredArray = countriesData
+    .filter((country) => country.region.includes(region))
+    .filter((country) =>
+      country.name.common.toLowerCase().includes(searchCountryName)
+    );
+
   useEffect(() => {
     getAllCountries();
   }, []);
@@ -312,26 +318,15 @@ export default function Home({}) {
 
           {countriesData ? (
             <div className={Style.Home_box_countries}>
-              {countriesData
-                .filter((country) => {
-                  return (
-                    country.name.common
-                      .toLowerCase()
-                      .includes(searchCountryName),
-                    country.region.includes(region)
-                  );
-                })
-                .map((country, i) => (
-                  <Link
-                    href={`/description?country=${JSON.stringify(country)}`}
-                  >
-                    <CountryTab
-                      className={Style.Home_box_country}
-                      key={i + 1}
-                      data={country}
-                    />
-                  </Link>
-                ))}
+              {filteredArray.map((country, i) => (
+                <Link href={`/description?country=${JSON.stringify(country)}`}>
+                  <CountryTab
+                    className={Style.Home_box_country}
+                    key={i + 1}
+                    data={country}
+                  />
+                </Link>
+              ))}
             </div>
           ) : (
             <h3>No Data</h3>
