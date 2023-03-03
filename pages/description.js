@@ -11,6 +11,8 @@ const description = () => {
 
   const country = router.query.country;
 
+  //const countryData = JSON.parse(country);
+
   console.log(country);
 
   useEffect(() => {
