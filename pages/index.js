@@ -26,22 +26,6 @@ export default function Home({}) {
     }
   };
 
-  const africa = () => {
-    countriesData.filter((country) => country.region === "Africa");
-  };
-  const america = () => {
-    countriesData.filter((country) => country.region === "America");
-  };
-  const europe = () => {
-    countriesData.filter((country) => country.region === "Europe");
-  };
-  const asia = () => {
-    countriesData.filter((country) => country.region === "Asia");
-  };
-  const oceania = () => {
-    countriesData.filter((country) => country.region === "Oceania");
-  };
-
   // const setCountry = () => {
   //   if (countryInfo) {
   //     setCountriesData([]);
@@ -284,7 +268,10 @@ export default function Home({}) {
                 onClick={() => getCountryByName(searchCountryName)}
               />
             </div>
-            <div className={Style.Home_box_top_filter}>
+            <div
+              className={Style.Home_box_top_filter}
+              onClick={() => openFilter()}
+            >
               <p>Filter by Region</p>
               {!filter ? (
                 <RiArrowDropDownLine
@@ -292,19 +279,24 @@ export default function Home({}) {
                   className={Style.Home_box_top_filter_icon}
                 />
               ) : (
-                <RiArrowDropUpLine
-                  onClick={() => openFilter()}
-                  className={Style.Home_box_top_filter_icon}
-                />
+                <RiArrowDropUpLine className={Style.Home_box_top_filter_icon} />
               )}
 
               {filter && (
                 <div className={Style.Home_box_top_filter_options}>
-                  <p onClick={() => setRegion("Africa")}>Africa</p>
-                  <p onClick={() => setRegion("America")}>America</p>
-                  <p onClick={() => setRegion("Asia")}>Asia</p>
-                  <p onClick={() => setRegion("Europe")}>Europe</p>
-                  <p onClick={() => setRegion("Oceania")}>Oceania</p>
+                  <p onClick={() => (setRegion("Africa"), openFilter())}>
+                    Africa
+                  </p>
+                  <p onClick={() => (setRegion("America"), openFilter())}>
+                    America
+                  </p>
+                  <p onClick={() => (setRegion("Asia"), openFilter())}>Asia</p>
+                  <p onClick={() => (setRegion("Europe"), openFilter())}>
+                    Europe
+                  </p>
+                  <p onClick={() => (setRegion("Oceania"), openFilter())}>
+                    Oceania
+                  </p>
                 </div>
               )}
             </div>
@@ -322,9 +314,12 @@ export default function Home({}) {
             <div className={Style.Home_box_countries}>
               {countriesData
                 .filter((country) => {
-                  return country.name.common
-                    .toLowerCase()
-                    .includes(searchCountryName);
+                  return (
+                    country.name.common
+                      .toLowerCase()
+                      .includes(searchCountryName),
+                    country.region.includes(region)
+                  );
                 })
                 .map((country, i) => (
                   <Link

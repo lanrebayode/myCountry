@@ -27,3 +27,13 @@
 .NavBar_box p{
     font-size: 1.1rem;
 }
+
+@media screen and (max-width: 35em) {
+    .NavBar_box h4{
+        font-size: 1rem;
+    }
+
+    .NavBar_box p{
+        font-size: .8rem;
+    }
+}
