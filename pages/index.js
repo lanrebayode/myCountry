@@ -322,12 +322,9 @@ export default function Home({}) {
             <div className={Style.Home_box_countries}>
               {countriesData
                 .filter((country) => {
-                  return (
-                    country.name.common
-                      .toLowerCase()
-                      .includes(searchCountryName),
-                    country.region.includes(region)
-                  );
+                  return country.name.common
+                    .toLowerCase()
+                    .includes(searchCountryName);
                 })
                 .map((country, i) => (
                   <Link
