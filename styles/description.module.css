@@ -19,6 +19,18 @@
     border-radius: .8rem;
 }
 
+.description_box_box1_right_details{
+    margin-top: 1.5rem;
+}
+
+.description_box_box1_right_details p{
+    font-weight: 700;
+}
+
+.description_box_box1_right_details span{
+    font-weight: 300;
+}
+
 @media screen and (max-width: 35em) {
     .description_box_box1{
         grid-template-columns: 1fr;

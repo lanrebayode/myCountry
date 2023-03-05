@@ -8,13 +8,14 @@ import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
 import { AiOutlineSearch } from "react-icons/ai";
 import CountryTab from "@/Components/CountryTab/CountryTab";
 
-export default function Home({}) {
+export default function Home() {
   const restAPI = "https://restcountries.com/v3.1/all";
   const restAPI_name = "https://restcountries.com/v2/name/";
+  const restAPI_region = "https://restcountries.com/v3.1/region/";
 
   const [filter, setFilter] = useState(false);
-  const [countriesData, setCountriesData] = useState([]);
   const [searchCountryName, setSearchCountryName] = useState("");
+  const [countriesData, setCountriesData] = useState();
   const [region, setRegion] = useState("");
   // const [countryInfo, setCountryInfo] = useState({});
 
@@ -39,7 +40,6 @@ export default function Home({}) {
     const response = await fetch(`${restAPI}`);
     const data = await response.json();
     setCountriesData(data);
-    console.log(countriesData[0]);
     console.log(data);
   };
 
@@ -47,15 +47,22 @@ export default function Home({}) {
   const getCountryByName = async (name) => {
     const response = await fetch(`${restAPI_name}${name}`);
     const data = await response.json();
-    console.log(name);
+    setCountriesData(data);
+    console.log(data);
+  };
+  //Get COuntry BY Region
+  const getCountryByRegion = async (name) => {
+    const response = await fetch(`${restAPI_region}${name}`);
+    const data = await response.json();
+    setCountriesData(data);
     console.log(data);
   };
 
-  const filteredArray = countriesData
-    .filter((country) => country.region.includes(region))
-    .filter((country) =>
-      country.name.common.toLowerCase().includes(searchCountryName)
-    );
+  // const filteredArray = countriesData
+  //   .filter((country) => country.region.includes(region))
+  //   .filter((country) =>
+  //     country.name.common.toLowerCase().includes(searchCountryName)
+  //   );
 
   useEffect(() => {
     getAllCountries();
@@ -290,17 +297,33 @@ export default function Home({}) {
 
               {filter && (
                 <div className={Style.Home_box_top_filter_options}>
-                  <p onClick={() => (setRegion("Africa"), openFilter())}>
+                  <p
+                    onClick={() => (getCountryByRegion("Africa"), openFilter())}
+                  >
                     Africa
                   </p>
-                  <p onClick={() => (setRegion("America"), openFilter())}>
+                  <p
+                    onClick={() => (
+                      getCountryByRegion("America"), openFilter()
+                    )}
+                  >
                     America
                   </p>
-                  <p onClick={() => (setRegion("Asia"), openFilter())}>Asia</p>
-                  <p onClick={() => (setRegion("Europe"), openFilter())}>
+                  <p onClick={() => (getCountryByRegion("Asia"), openFilter())}>
+                    Asia
+                  </p>
+                  <p
+                    onClick={() => (
+                      getCountryByRegion("Europpe"), openFilter()
+                    )}
+                  >
                     Europe
                   </p>
-                  <p onClick={() => (setRegion("Oceania"), openFilter())}>
+                  <p
+                    onClick={() => (
+                      getCountryByRegion("Oceania"), openFilter()
+                    )}
+                  >
                     Oceania
                   </p>
                 </div>
@@ -318,8 +341,8 @@ export default function Home({}) {
 
           {countriesData ? (
             <div className={Style.Home_box_countries}>
-              {filteredArray.map((country, i) => (
-                <Link href={`/description?country=${JSON.stringify(country)}`}>
+              {countriesData.map((country, i) => (
+                <Link href={`/description?country=${country.name.common}`}>
                   <CountryTab
                     className={Style.Home_box_country}
                     key={i + 1}

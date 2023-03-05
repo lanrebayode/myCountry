@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
@@ -7,17 +7,29 @@ import germany from "../public/ger.png";
 import { NavBar } from "@/Components/NavBar/NavBar";
 
 const description = () => {
+  const [countryData, setCountryData] = useState();
   const router = useRouter();
-
   const country = router.query.country;
 
-  //const countryData = JSON.parse(country);
+  const restAPI_name = "https://restcountries.com/v2/name/";
 
-  console.log(country);
+  //Search for a Country
+  const getCountryByName = async (country) => {
+    const response = await fetch(`${restAPI_name}${country}`);
+    const data = await response.json();
+    console.log(data[0]);
+    setCountryData(data[0]);
+    //setCountryData(countryData);
+    console.log(countryData);
+  };
 
   useEffect(() => {
-    console.log(country);
+    getCountryByName(country);
   }, []);
+
+  console.log(countryData);
+
+  //console.log(country);
 
   {
     /* <h1>{countryData.continents}</h1>
@@ -41,38 +53,45 @@ const description = () => {
     <div className={Style.description}>
       <NavBar />
       <div className={Style.description_box}>
-        <div className={Style.description_box_box1}>
-          <Image src={germany} alt="flag" width={300} height={200} />
-          <div className={Style.description_box_box1_right}>
-            <h3>Germany</h3>
-            <p>
-              Capital: <span>Berlin</span>
-            </p>
-            <p>
-              population: <span>38383393</span>
-            </p>
-            <p>
-              Area: <span>38383393</span>
-            </p>
-            <p>
-              Timezones: <span>38383393</span>
-            </p>
-            <p>
-              unMember: <span>38383393</span>
-            </p>
-            <p>
-              Region: <span>38383393</span>
-            </p>
-            <p>
-              Languages: <span>38383393</span>
-            </p>
-            <p>
-              Currencies: <span>38383393</span>
-            </p>
-          </div>
+        {countryData ? (
+          <div className={Style.description_box_box1}>
+            <Image src={germany} alt="flag" width={300} height={200} />
+            <div className={Style.description_box_box1_right}>
+              {countryData ? <p>{countryData.name}</p> : <p>Nothing found</p>}
+              <h3>{countryData.name}</h3>
+              <div className={Style.description_box_box1_right_details}>
+                <p>
+                  Capital: <span>{countryData.capital} </span>
+                </p>
+                <p>
+                  population: <span>{countryData.population}</span>
+                </p>
+                <p>
+                  Area: <span>{countryData.area}sqKm</span>
+                </p>
+                <p>
+                  Timezones: <span>{countryData.timezones}</span>
+                </p>
+                <p>
+                  Region: <span>{countryData.region}</span>
+                </p>
+                <p>
+                  Sub-Region: <span>{countryData.subregion}</span>
+                </p>
+                <p>
+                  Languages: <span>{countryData.languages[0].name}</span>
+                </p>
+                <p>
+                  Currencies: <span>{countryData.currencies[0].name}</span>
+                </p>
+              </div>
+            </div>
 
-          <div className={Style.description_box_box2}></div>
-        </div>
+            <div className={Style.description_box_box2}></div>
+          </div>
+        ) : (
+          <h3>No Data Found</h3>
+        )}
       </div>
     </div>
   );
