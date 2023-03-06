@@ -55,7 +55,7 @@ const description = () => {
       <div className={Style.description_box}>
         {countryData ? (
           <div className={Style.description_box_box1}>
-            <Image src={germany} alt="flag" width={300} height={200} />
+            <Image src={countryData.flag} alt="flag" width={300} height={200} />
             <div className={Style.description_box_box1_right}>
               {countryData ? <p>{countryData.name}</p> : <p>Nothing found</p>}
               <h3>{countryData.name}</h3>
