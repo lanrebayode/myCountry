@@ -297,6 +297,7 @@ export default function Home() {
 
               {filter && (
                 <div className={Style.Home_box_top_filter_options}>
+                  <p onClick={() => (getAllCountries(), openFilter())}>All</p>
                   <p
                     onClick={() => (getCountryByRegion("Africa"), openFilter())}
                   >
