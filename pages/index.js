@@ -40,7 +40,7 @@ export default function Home() {
     const response = await fetch(`${restAPI}`);
     const data = await response.json();
     setCountriesData(data);
-    console.log(data);
+    //console.log(data);
   };
 
   //Search for a Country
@@ -48,14 +48,14 @@ export default function Home() {
     const response = await fetch(`${restAPI_name}${name}`);
     const data = await response.json();
     setCountriesData(data);
-    console.log(data);
+    // console.log(data);
   };
   //Get COuntry BY Region
   const getCountryByRegion = async (name) => {
     const response = await fetch(`${restAPI_region}${name}`);
     const data = await response.json();
     setCountriesData(data);
-    console.log(data);
+    // console.log(data);
   };
 
   // const filteredArray = countriesData

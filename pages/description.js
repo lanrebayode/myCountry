@@ -17,17 +17,16 @@ const description = () => {
   const getCountryByName = async (country) => {
     const response = await fetch(`${restAPI_name}${country}`);
     const data = await response.json();
-    console.log(data[0]);
+    //console.log(data[0]);
     setCountryData(data[0]);
-    //setCountryData(countryData);
-    console.log(countryData);
+    //console.log(countryData);
   };
 
   useEffect(() => {
     getCountryByName(country);
   }, []);
 
-  console.log(countryData);
+  //console.log(countryData);
 
   //console.log(country);
 
@@ -57,7 +56,6 @@ const description = () => {
           <div className={Style.description_box_box1}>
             <Image src={countryData.flag} alt="flag" width={300} height={200} />
             <div className={Style.description_box_box1_right}>
-              {countryData ? <p>{countryData.name}</p> : <p>Nothing found</p>}
               <h3>{countryData.name}</h3>
               <div className={Style.description_box_box1_right_details}>
                 <p>
